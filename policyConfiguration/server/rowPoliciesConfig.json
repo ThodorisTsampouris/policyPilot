@@ -1,0 +1,22 @@
+{
+    "object": [
+        {
+            "0": [
+                [
+                    "/addEmployee",
+                    "getaddEmployee"
+                ],
+                [
+                    "user",
+                    "role",
+                    "equals",
+                    "text",
+                    "admin",
+                    "deny"
+                ]
+            ]
+        },
+        "permit",
+        "PERMIT_UNLESS_DENY"
+    ]
+}

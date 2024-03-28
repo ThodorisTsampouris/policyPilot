@@ -1,0 +1,95 @@
+version: "3"
+services:
+  authentication-client:
+    build: ./Authentication/client
+    ports:
+      - 5173:5173
+    depends_on:
+      - mongo
+      - authentication-server
+    environment:
+      - VITE_AUTENTICATION_SERVER_URL=http://localhost:3001
+      - VITE_MAIN_APPLICATION_CLIENT_URL=http://localhost:8080
+
+  authentication-server:
+    build: ./Authentication/server
+    ports:
+      - 3001:3001
+    depends_on:
+      - mongo
+    environment:
+      - SECRET_KEY=a98sdf89asdf9u34oiha9s8h3498ahsdf987aw5e34kjasdf908
+      - MONGO_CONNECTION_STRING=mongodb://mongo:27017/
+      - MONGO_EMPLOYEE_DB=employee
+
+  main-application-client:
+    build: ./mainApplication/Timesheet_frontSdk
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    environment:
+      - SECRET_KEY=a98sdf89asdf9u34oiha9s8h3498ahsdf987aw5e34kjasdf908
+      - VITE_AUTHENTICATION_SERVER_URL=http://authentication-server:3001/
+      - VITE_POLICY_SERVER_URL=http://policy-server:3000/
+      - VITE_AUTHENTICATION_CLIENT_URL=http://localhost:5173/
+
+  main-application-server:
+    build: ./mainApplication/Timesheet_server
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mongo
+    environment:
+    - SECRET_KEY=a98sdf89asdf9u34oiha9s8h3498ahsdf987aw5e34kjasdf908
+    - VITE_AUTHENTICATION_SERVER_URL=http://authentication-server:3001/
+    - VITE_POLICY_SERVER_URL=http://policy-server:3000/
+    - DB_URL=mongodb://mongo:27017/localhost
+
+  policy-server:
+    build: ./policyServerJs
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_CONNECTION_STRING=mongodb://mongo:27017/
+      - MONGO_POLICY_CONFIGURATION_DB=Policy_Configuration_Service
+      - ALLOWED_ORIGINS=['http://127.0.0.1:8080', 'http://127.0.0.1:8090', 'http://127.0.0.1:5174']
+
+  policy-configuration-client:
+    build: ./policyConfiguration/client
+    ports:
+      - 5174:5174
+    depends_on:
+      - mongo
+      - policy-configuration-server
+    environment:
+      - VITE_SERVER_PORT=3002
+      - VITE_BASE_URL=http://localhost:5174
+      - VITE_POLICY_CONFIGURATION_SERVER_URL=http://localhost:3002
+      - VITE_GITHUB_CLIENT_ID=32f1406420f80f072de5
+
+  policy-configuration-server:
+    build: ./policyConfiguration/server
+    ports:
+      - 3002:3002
+    depends_on:
+      - mongo
+    environment:
+      - SERVER_PORT=3002
+      - GITHUB_CLIENT_ID=32f1406420f80f072de5
+      - GITHUB_CLIENT_SECRET=d1222322d21220d71a9628d9101b6f11b87657b7
+      - MONGO_CONNECTION_STRING=mongodb://mongo:27017/
+      - MONGO_POLICY_CONFIGURATION_DB=Policy_Configuration_Service
+      - GITHUB_AUTH_URL=https://github.com/login/oauth/access_token
+      - GITHUB_USER_URL=https://api.github.com/user
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    expose:
+      - '27017'
+    volumes:
+      - ./mongo-setup:/docker-entrypoint-initdb.d

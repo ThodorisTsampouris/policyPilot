@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  div {
+    text-align: center;
+    margin-top: 50px; 
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+  }
+  
+
+  h1 {
+    font-size: 24px; 
+    margin-bottom: 20px; 
+  }
+
+.github-login-button {
+    width: 150px; 
+    height: 150px; 
+    background-color: #0b0e0f; 
+    color: #f9f7f7;
+    font-size: 16px; 
+    text-align: center;
+    line-height: 150px; 
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; 
+  }
