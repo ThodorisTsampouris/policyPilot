@@ -8,8 +8,8 @@ services:
       - mongo
       - authentication-server
     environment:
-      - VITE_AUTENTICATION_SERVER_URL=http://localhost:3001
-      - VITE_MAIN_APPLICATION_CLIENT_URL=http://localhost:8080
+      - VITE_AUTENTICATION_SERVER_URL=http://${HOST}:3001
+      - VITE_MAIN_APPLICATION_CLIENT_URL=http://${HOST}:8080
 
   authentication-server:
     build: ./Authentication/server
@@ -32,7 +32,7 @@ services:
       - SECRET_KEY=a98sdf89asdf9u34oiha9s8h3498ahsdf987aw5e34kjasdf908
       - VITE_AUTHENTICATION_SERVER_URL=http://authentication-server:3001/
       - VITE_POLICY_SERVER_URL=http://policy-server:3000/
-      - VITE_AUTHENTICATION_CLIENT_URL=http://localhost:5173/
+      - VITE_AUTHENTICATION_CLIENT_URL=http://${HOST}:5173/
 
   main-application-server:
     build: ./mainApplication/Timesheet_server
@@ -66,8 +66,8 @@ services:
       - policy-configuration-server
     environment:
       - VITE_SERVER_PORT=3002
-      - VITE_BASE_URL=http://localhost:5174
-      - VITE_POLICY_CONFIGURATION_SERVER_URL=http://localhost:3002
+      - VITE_BASE_URL=http://${HOST}:5174
+      - VITE_POLICY_CONFIGURATION_SERVER_URL=http://${HOST}:3002
       - VITE_GITHUB_CLIENT_ID=32f1406420f80f072de5
 
   policy-configuration-server:
