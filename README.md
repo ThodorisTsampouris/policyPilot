@@ -11,7 +11,8 @@ List of the four services included in the project
 
 ## Deployment Instructions
     - Clone the repo
-    - In /.env file replace the host with the actual host ip of the machine that the project will be deployed
-    - Open a cmd and navigate to the folder in which the repo was cloned
+    - In /.env file replace the host with the actual host ip of the machine that the project will be deployed and the mongo connection string
+    - In docker-compose.yml file add the values for the env variables
+    - Navigate to the folder in which the repo was cloned
     - Run the command "docker-compose up -d"
 

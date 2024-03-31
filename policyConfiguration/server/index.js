@@ -102,20 +102,6 @@ app.get('/health', (req, res) => {
     res.sendStatus(200).send('OK')
 })
 
-// app.get('/getPoliciesConfig', (req, res) => {
-//     const jsonPath = path.join(__dirname, 'rowPoliciesConfig.json');
-
-//     fs.readFile(jsonPath, 'utf-8', (err, data) => {
-//         if (err) {
-//             console.error('Error reading file:', err);
-//             res.status(500).send('Error reading file');
-//         } else {
-//             console.log(data);
-//             res.send(data);
-//         }
-//     });
-// })
-
 app.listen(process.env.SERVER_PORT, () => {
     console.log('Server is running', `${process.env.MONGO_CONNECTION_STRING}`)
 })
