@@ -19,9 +19,7 @@ function Signup() {
             .then(result => {
                 token = JSON.stringify(result.data)
                 let postBody = { "token": (result.data) }
-                console.log(result)
                 if (result.data !== 'Email already exists') {
-                    console.log(result.data)
                     document.cookie = token.slice(1, -1)
                     window.location.href = `${import.meta.env.VITE_MAIN_APPLICATION_CLIENT_URL}/home`
                 }

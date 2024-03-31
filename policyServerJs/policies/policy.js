@@ -31,38 +31,6 @@ function policy(subject, action, resource, target, policiesConfig) {
 
     console.log('POLICY DECISIONS', policyDecisions)
 
-
-    // switch (action) {
-    //     case ('createuser'):
-    //         if (subject["role"] === 'admin' || subject.userName === 'superAdmin') {
-
-    //             policyDecisions.push('permit')
-    //         } else {
-
-    //             policyDecisions.push('deny')
-    //         }
-    //         break;
-    //     case ('deleteuser'):
-    //         if (subject.role === 'admin' || subject.role === 'superAdmin') {
-
-    //             policyDecisions.push('permit')
-    //         } else {
-
-    //             policyDecisions.push('deny')
-    //         }
-    //         break;
-    //     case ('updateuser'):
-    //         if (subject.role === 'manager' || subject.role === 'admin' || subject.role === 'superAdmin') {
-
-    //             policyDecisions.push('permit')
-    //         } else {
-
-    //             policyDecisions.push('deny')
-    //         }
-    //         break;
-
-    // }
-
     // BINDING ALGORITHM
     switch (bindingAlgorithm) {
         case ('PERMIT_UNLESS_DENY'):

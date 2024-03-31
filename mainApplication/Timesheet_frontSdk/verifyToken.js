@@ -8,22 +8,17 @@ function validateToken(dirname, req, res) {
     try {
         const SECRET_KEY = process.env.SECRET_KEY
         const token = JSON.stringify(req.headers.cookie);
-        console.log('Cookie', token)
         try {
             let config = {}
             let body = {}
             const decoded = jwt.verify(token.slice(1, -1), SECRET_KEY);
-            console.log(decoded)
 
             // Policy server request prep
-            console.log('DIRNAME', dirname)
             // Action
             var action = 'get' + dirname
             body.action = action
-            console.log(action)
             // Subject
             var userId = decoded.id
-            console.log(userId)
 
             axios.get(`${process.env.VITE_AUTHENTICATION_SERVER_URL}users/${userId}`)
                 .then(response => {

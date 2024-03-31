@@ -13,13 +13,9 @@ function Login() {
         let token
         axios.post(`${import.meta.env.VITE_AUTENTICATION_SERVER_URL}/login`, { email, password })
             .then(result => {
-                console.log(result)
                 token = JSON.stringify(result.data)
                 let postBody = { "token": (result.data) }
-                console.log(postBody)
-                console.log('RESULTT DATA', result.data)
                 if (result.data !== 'Email or password incorrect') {
-                    console.log(result.data)
                     document.cookie = token.slice(1, -1)
                     window.location.href = `${import.meta.env.VITE_MAIN_APPLICATION_CLIENT_URL}/home`
                 }

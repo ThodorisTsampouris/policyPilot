@@ -23,7 +23,6 @@ app.post('/login', (req, res) => {
         .then(user => {
             if (user) {
                 if (user.password === password) {
-                    console.log(user)
                     const id = user.id
                     const token = jwt.sign({ id, email }, secretKey, { expiresIn: '1h' })
                     res.json(token)
@@ -48,7 +47,6 @@ app.post('/register', (req, res) => {
                         employeeModel.findOne({ email: email })
                             .then(user => {
                                 if (user) {
-                                    console.log(user)
                                     const id = user.id
                                     const token = jwt.sign({ id, email }, secretKey, { expiresIn: '1h' })
                                     res.json(token)

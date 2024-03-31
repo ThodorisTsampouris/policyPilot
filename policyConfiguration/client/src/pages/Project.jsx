@@ -56,10 +56,8 @@ function FirstTypeRow({ dropdowns, rowIndex, jsonData, firstTypeRowValues }) {
 
 function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, conditionDecisionValue, groupIndex, logicalBlocks, logicalBlockConditions }) {
   if (!logicalBlocks) {
-    console.log('BEGIN LOCIGAL BLOCKS', logicalBlocks, rowIndex)
     logicalBlocks = []
     logicalBlockConditions = []
-    console.log('AFTER BEGIN LOCIGAL BLOCKS', logicalBlocks, rowIndex)
   }
   const [blocks, setBlocks] = useState([]);
   const [blockDropdowns, setBlockDropdowns] = useState([]);
@@ -78,15 +76,9 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
   const [logicalBlockConditionsValue, setLogicalBlockConditionsValue] = useState(logicalBlockConditions[rowIndex - 1] ? logicalBlockConditions[rowIndex - 1] : [])
 
 
-  // console.log('ROW INDEX', rowIndex)
-  // console.log('LOGICAL VALUES ARRAY', logicalBlocks) 
-  // console.log('LOGICAL BLOCK DETAILS CONDITIONS', logicalBlockConditionsValue)
-
   useEffect(() => {
-    console.log('LOGICAL BLOCK CONDITIONS', logicalBlockConditions)
     if (logicalBlocksValues) {
       for (var blockValue in logicalBlocksValues) {
-        // console.log('LOGICAL BLOCK VALUE', logicalBlocksValues[blockValue])
         addBlock(`${logicalBlocksValues[blockValue]}`, false)
       }
     }
@@ -94,16 +86,13 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
   }, []);
 
   const addBlock = (type, load) => {
-    // console.log('LOAD', load)
     if (load === true) {
       const defaultConditions = ["firstName", "equals", "text"]
       setLogicalBlockConditionsValue(prevConditions => [...prevConditions, defaultConditions]);
-      // console.log('LOGICAL BLOCK CONDITIONS', logicalBlockConditionsValue)
     }
     setBlocks(prevBlocks => [...prevBlocks, type]);
     setBlockDropdowns(prevDropdowns => [...prevDropdowns, ["lastName", "equals", "text"]]);
     setSelectedThirdDropdownValues(prevValues => [...prevValues, '']);
-    // console.log('LOGICAL BLOCK CONDITIONS HERERERERE', logicalBlockConditionsValue)
   };
 
   const handleDeleteBlock = (blockIndex) => {
@@ -137,9 +126,7 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
 
     // Update the state with the new array
     setLogicalBlockConditionsValue(updatedLogicalBlockConditionsValue);
-    // console.log('LOGICAL BLOCK CONDITIONS INSIDE FUNCTION', logicalBlockConditionsValue[index][2], index, logicalBlockConditionsValue[index])
     if (j === 2) {
-      console.log('LOGICAL BLOCK CONDITIONS INSIDE FUNCTION', logicalBlockConditionsValue[index][2], index, logicalBlockConditionsValue[index])
       // renderNewField(logicalBlockConditionsValue[index][2])
       setSelectedBlockValueType(logicalBlockConditionsValue[index][2])
     }
@@ -273,7 +260,6 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
 
   // Render the new field based on the selected value type
   const renderNewField = (selectedBlockValueType, callType) => {
-    console.log('render logical block', logicalBlockConditionsValue[callType][3])
     if (selectedBlockValueType === 'text' || selectedBlockValueType === 'number') {
       return <input label={`"Comparison Term"${rowIndex}`} className="select-dropdown" type={selectedBlockValueType} placeholder={`Enter ${selectedBlockValueType} value`} value={logicalBlockConditionsValue[callType][3]} onChange={(event) => { handleRenderedFieldValueChange(event, callType) }} />;
     } else {
@@ -561,9 +547,6 @@ function Project() {
                * But every secondType row can belong to only one group
                */
               for (var secondRowCounter in projectPolicyConfiguration[count].conditions) {
-
-                // console.log('SECOND ROW CONDITIONS LENGTH', projectPolicyConfiguration[count].conditions[secondRowCounter].length)
-                // console.log('SECOND ROW CONDITIONS DETAILS', projectPolicyConfiguration[count].conditions[secondRowCounter])
                 locigalValues[count][secondRowCounter] = []
                 logicalBlocksConditions[count][secondRowCounter] = []
                 if (projectPolicyConfiguration[count].conditions[secondRowCounter].length > 2) {
@@ -571,7 +554,6 @@ function Project() {
                   for (var secondRowBlocksCounter = 1; secondRowBlocksCounter < projectPolicyConfiguration[count].conditions[secondRowCounter].length - 1; secondRowBlocksCounter++) {
 
                     if (secondRowBlocksCounter % 2 == 0) {
-                      // console.log('BLOCK CONDITIONS', projectPolicyConfiguration[count].conditions[secondRowCounter][secondRowBlocksCounter][0])
                       logicalBlocksConditions[count][secondRowCounter].push(
                         [
                           // projectPolicyConfiguration[count].conditions[secondRowCounter][secondRowBlocksCounter][0].subject.entity,
@@ -582,7 +564,6 @@ function Project() {
                         ])
                     } else {
                       // Loading the logical values for each secondType row of every policy
-                      // console.log('LOGICAL BLOCK', projectPolicyConfiguration[count].conditions[secondRowCounter][secondRowBlocksCounter][0].logicalOperator)
                       locigalValues[count][secondRowCounter].push(projectPolicyConfiguration[count].conditions[secondRowCounter][secondRowBlocksCounter][0].logicalOperator)
                     }
 
@@ -622,9 +603,6 @@ function Project() {
               intCounter++
             }
           }
-
-          // console.log('LOGICAL VALUES ARRAY', locigalValues)
-          // console.log('LOGICAL BLOCK DETAILS CONDITIONS', logicalBlocksConditions)
           setLogicalBlocks(locigalValues)
 
           setLogicalBlockConditions(logicalBlocksConditions);
@@ -678,8 +656,6 @@ function Project() {
 
     object.push(defaultDecision)
     object.push(bindingAlgorithm)
-
-    console.log('SUBMITED OBJECT', object)
 
     var projectId = window.location.href.split('/')[window.location.href.split('/').length - 1]
     // Send the json to server

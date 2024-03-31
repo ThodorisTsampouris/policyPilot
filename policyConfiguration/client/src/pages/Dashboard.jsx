@@ -7,19 +7,13 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const Dashboard = () => {
   const [applications, setApplications] = useState([]);
-  console.log('EEEEEEEEEEEE')
   useEffect(() => {
-    console.log('EEEEEEEEEEEE')
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const codeParam = urlParams.get('code')
-    console.log(codeParam)
-    console.log('edwwww')
     if (codeParam && (localStorage.getItem("access_token") === null)) {
-      console.log('hereere')
       axios.get(`${import.meta.env.VITE_POLICY_CONFIGURATION_SERVER_URL}/getGithubAccessToken?code=${codeParam}`)
         .then((response) => {
-          console.log(response.data)
           var access_token = response.data
           if (access_token) {
             localStorage.setItem("access_token", access_token)
@@ -28,7 +22,6 @@ const Dashboard = () => {
                 'Authorization': localStorage.getItem("access_token")
               }
             }).then((response) => {
-              console.log(response.data.login)
               axios.post(`${import.meta.env.VITE_POLICY_CONFIGURATION_SERVER_URL}/userApplications`, {
                 "username": response.data.login
               })
@@ -47,12 +40,10 @@ const Dashboard = () => {
           'Authorization': localStorage.getItem("access_token")
         }
       }).then((response) => {
-        console.log(response.data.login)
         axios.post(`${import.meta.env.VITE_POLICY_CONFIGURATION_SERVER_URL}/userApplications`, {
           "username": response.data.login
         })
           .then((response) => {
-            console.log(response.data[0])
             setApplications(response.data)
           })
       })

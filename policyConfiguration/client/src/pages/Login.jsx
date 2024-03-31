@@ -9,7 +9,6 @@ const Login = () => {
 
 
   const githubLogin = () => {
-    console.log('login')
     window.location.assign(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`)
   };
 

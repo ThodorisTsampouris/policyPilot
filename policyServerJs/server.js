@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 app.use((req, res, next) => {
   const allowedOrigins = process.env.ALLOWED_ORIGINS;
   const origin = req.headers.origin;
-  console.log('ORIGIN', origin)
 
   if (allowedOrigins.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
@@ -26,9 +25,7 @@ app.use((req, res, next) => {
 
 
 app.post('/evaluateRequest/:projectId', (req, res) => {
-  console.log('IDIDIDI', req.params.projectId)
   var projectId = req.params.projectId
-  console.log('REQUEST', JSON.stringify(req.body))
   // PEP.enforcePolicy(req, res);
   PDP.evaluateRequest(req, res, projectId);
 });
