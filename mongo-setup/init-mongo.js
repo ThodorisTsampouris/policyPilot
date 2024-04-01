@@ -8,7 +8,7 @@ db.createCollection('applicationconfigs');
 
 // Insert data into the collection
 db.applicationconfigs.insertOne({
-  "username": "ThodorisTsampouris",
+  "username": "",
   "projectId": "123456789",
   "projectName": "Timesheet",
   "configuration": {

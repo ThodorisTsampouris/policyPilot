@@ -14,7 +14,7 @@
     "path": "^0.12.7"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "Your Name",
   "license": "MIT"
