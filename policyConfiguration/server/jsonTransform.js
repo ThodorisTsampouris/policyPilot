@@ -1,4 +1,4 @@
-// Function to make the json that comes from the WABLI in a better format for the policy configuration project page
+// Function to turn the JSON that comes from the WABLI in a better format for the policy configuration project page
 
 function jsonTransform(data) {
     const transformedJson = {}
@@ -85,7 +85,6 @@ function jsonTransform(data) {
     console.log('FINAL', transformedJson)
     // Create the final Json file
     const transformedJsonString = JSON.stringify(transformedJson)
-    const transformedJsonPath = 'policyConfiguration/client/transformedJson.json'
 
     return (transformedJsonString)
 }

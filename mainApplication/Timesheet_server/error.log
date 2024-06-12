@@ -641,3 +641,5 @@
 {"level":"error","service":"user-service","timestamp":"2024-03-11T17:23:44.688Z"}
 {"level":"error","message":"Express Server failure","service":"user-service","timestamp":"2024-03-11T21:14:58.083Z"}
 {"level":"error","service":"user-service","timestamp":"2024-03-11T21:14:58.093Z"}
+{"level":"error","message":"Express Server failure","service":"user-service","timestamp":"2024-06-12T10:34:53.635Z"}
+{"level":"error","service":"user-service","timestamp":"2024-06-12T10:34:53.638Z"}

@@ -1,5 +1,3 @@
-const fs = require('fs');
-
 function policyServerJson(object) {
     var transformedJson = {}
 
@@ -23,11 +21,7 @@ function policyServerJson(object) {
             value: ""
         }
     }
-
-    // console.log("OBJECT", JSON.stringify(object.object))
-    console.log('COUNT1', object.object.length)
     for (var count = 0; count < object.object.length - 2; count++) {
-        console.log('COUNT', object.object[count])
         subObject = {
             resource: "",
             method: "",
@@ -41,7 +35,7 @@ function policyServerJson(object) {
         subObject.resource = object.object[count][count][0][0]
         // Methods
         subObject.method = object.object[count][count][0][1]
-
+        
         const entity = object.object[count][count][1][0]
         var subCondition = []
         for (var subCount in object.object[count][count]) {
@@ -135,16 +129,6 @@ function policyServerJson(object) {
     transformedJson = {...transformedJson, ...bindingAlgorithmJson}
     console.log("FINAL", JSON.stringify(transformedJson))
 
-    const transformedJsonString = JSON.stringify(transformedJson)
-    const transformedJsonPath = 'policyServerJson.json'
-
-    fs.writeFile(transformedJsonPath, transformedJsonString, (err) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log('JSON transformed and created Successfully')
-        }
-    })
 
     return (transformedJson)
 

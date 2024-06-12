@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const PEP = require('./pep');
 const PDP = require('./pdp');
 const cors = require('cors')
 require('dotenv').config();
@@ -26,7 +25,6 @@ app.use((req, res, next) => {
 
 app.post('/evaluateRequest/:projectId', (req, res) => {
   var projectId = req.params.projectId
-  // PEP.enforcePolicy(req, res);
   PDP.evaluateRequest(req, res, projectId);
 });
 

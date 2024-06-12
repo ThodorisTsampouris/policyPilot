@@ -1,9 +1,7 @@
 function operatorTransfrom(attr, value, operator, comparisonType) {
-    console.log('COMPARISONTYPE', comparisonType)
-    console.log('VALUE', value)
-    console.log('OPERATOR', operator)
     switch (comparisonType) {
         case ('"text"'):
+        case ('"number"'):
             switch (operator) {
                 case ("equals"):
                     return `subject[${attr}] === ${value}`

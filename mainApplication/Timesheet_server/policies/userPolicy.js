@@ -20,16 +20,11 @@ function userPolicy(request, response, userAction, action) {
     // GET USER OBJECT WITH REQUEST AT LOGIN SERVICE
     axios.get(`${process.env.VITE_AUTHENTICATION_SERVER_URL}users/${userId}`)
         .then(res => {
-            console.log('User login service data:', res.data);
-
             // Subject 
             body.subject = res.data
-
             let urlParts = request.url.split('/')
             console.log('UrlParts', urlParts)
             // Action
-            // body.action = request.method
-            // TO be
             body.action = action
 
             // Resource
@@ -60,7 +55,7 @@ function userPolicy(request, response, userAction, action) {
                 // Request to policyServer
                 axios.request(config)
                     .then((policyRes) => {
-                        console.log('POLICY RESPONSE',JSON.stringify(policyRes.data.message));
+                        console.log('POLICY RESPONSE', JSON.stringify(policyRes.data.message));
                         if (policyRes.data.message === "Access granted") {
                             Controller.handleRequest(request, response, userAction);
                         }
@@ -74,12 +69,9 @@ function userPolicy(request, response, userAction, action) {
                     });
             })
         })
-
         .catch(error => {
             console.error('Error fetching user data:', error.message);
         });
-
-
 }
 
 module.exports = { userPolicy }

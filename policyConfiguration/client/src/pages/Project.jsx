@@ -109,11 +109,6 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
     setSelectedThirdDropdownValues(updatedThirdDropdownValues);
   };
 
-  // const handleBlocksConditionsValuesChange = (event, dropdownIndex) => {
-  //   const value = event.target.value;
-  //   setLogicalBlockConditionsValue
-  // }
-
   const handleBlocksConditionsValuesChange = (event, index, j) => {
     // Get the selected value from the dropdown
     const selectedValue = event.target.value;
@@ -142,10 +137,7 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
             <select
               label={j === 0 ? `"Subject's Attributes"${rowIndex}` : j === 1 ? `"Operators"${rowIndex}` : `"Comparator"${rowIndex}`}
               className="select-dropdown"
-              // onChange={j === 2 ? (event) => handleThirdDropdownChange(event, index) : (event) => handleDropdownChange(event, index, j)}
               onChange={(event) => handleBlocksConditionsValuesChange(event, index, j)}
-              // value={blockDropdowns[index][j]}
-              // value={j === 0 ? logicalBlockConditionsValue[index][0] : j === 1 ? logicalBlockConditionsValue[index][1] : logicalBlockConditionsValue[index][2]}
               value={logicalBlockConditionsValue[index][j]}
             >
               {j === 0 && selectedEntity && (
@@ -180,7 +172,6 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
             </select>
           </div>
         ))}
-        {/* {console.log('logicalBlockConditionsValue[index][2]', logicalBlockConditionsValue[index][2], index)*/}
         {logicalBlockConditionsValue[index][2] && renderNewField(logicalBlockConditionsValue[index][2], index)}
         <button className="remove-condition-light" onClick={() => handleDeleteBlock(index)}>Remove</button>
       </div>
@@ -330,7 +321,6 @@ function SecondTypeRow({ dropdowns, rowIndex, jsonData, secondTypeRowValues, con
 
           </select>
         ))}
-        {/* {console.log('SELECTED VALUE TYPE', selectedValueType)} */}
         {selectedValueType && secondTypeRowNewField(selectedValueType)}
         <div className="blocks-container">
           {renderBlocks()}
@@ -569,13 +559,6 @@ function Project() {
 
                   }
                 }
-                // if (projectPolicyConfiguration[count].conditions[secondRowCounter].length > 2) {
-                //   for (var secondRowBlocksCounter = 1; secondRowBlocksCounter < projectPolicyConfiguration[count].conditions[secondRowCounter].length - 1; secondRowBlocksCounter += 2) {
-                //     //console.log('COUNTER', secondRowBlocksCounter)
-                //     // Testing for logical operators console
-                //     //console.log('ROW LOGICAL OPERATOR', projectPolicyConfiguration[count].conditions[secondRowCounter][secondRowBlocksCounter][0].logicalOperator)
-                //   }
-                // }
 
                 /**
                  * Initialize and load the conditions decision
