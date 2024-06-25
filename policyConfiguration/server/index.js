@@ -21,7 +21,6 @@ app.use(cors())
 
 // Endpoint for the access token of the user that was authenticated
 app.get('/getGithubAccessToken', (req, res) => {
-    // console.log(req.query.code)
     const queryPath = `?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${req.query.code}`
     axios.post(process.env.GITHUB_AUTH_URL + queryPath)
         .then(response => {
@@ -71,7 +70,7 @@ app.get('/configurationObject/:id', (req, res) => {
             if (application) {
                 // console.log(application[0].configuration)
                 var response = JSON.parse(jsonTransform.jsonTransform(application[0].configuration))
-                console.log('RESPONSE',response)
+                console.log('RESPONSE', response)
                 res.status(200).json(response)
             }
         })

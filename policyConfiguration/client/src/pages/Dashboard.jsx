@@ -52,8 +52,6 @@ const Dashboard = () => {
 
   const handleProjectClick = (projectId) => {
     window.location.assign(`/${projectId}`)
-    // Navigate to the project page with the project ID
-    // navigate(`/project/${projectId}`);
   };
 
   const logout = () => {
@@ -94,28 +92,6 @@ const Dashboard = () => {
       </Box>
     </>
   );
-
-  // return (
-  //   <div>
-  //     <div>
-  //       <button onClick={logout} className="logout-button">Logout</button>
-  //     </div>
-  //     <Box p={4}>
-  //       <Heading as="h1" mb={4}>Project Dashboard</Heading>
-  //       <List spacing={3}>
-  //         {applications.map((application, index) => (
-  //            <ListItem key={index}>
-  //            <Link as={RouterLink} to={`/${application.projectId}`}>{application.projectName}</Link>
-  //          </ListItem>
-  //           // <a className='project' key={index} onClick={() => handleProjectClick(application.projectId)}>{application.projectName}</a>
-  //         ))}
-  //       </List>
-  //     </Box>
-  //     {/* {applications.map((application, index) => (
-  //       <a className='project' key={index} onClick={() => handleProjectClick(application.projectId)}>{application.projectName}</a>
-  //     ))} */}
-  //   </div >
-  // );
 };
 
 export default Dashboard;

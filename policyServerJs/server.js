@@ -28,21 +28,6 @@ app.post('/evaluateRequest/:projectId', (req, res) => {
   PDP.evaluateRequest(req, res, projectId);
 });
 
-app.post('/policiesConfiguration', (req, res) => {
-  const transformedJsonString = JSON.stringify(req.body)
-  const transformedJsonPath = 'policiesConfig.json'
-
-  fs.writeFile(transformedJsonPath, transformedJsonString, (err) => {
-    if (err) {
-      console.log(err)
-      res.sendStatus(500)
-    } else {
-      console.log('JSON transformed and created Successfully')
-      res.sendStatus(200)
-    }
-  })
-});
-
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

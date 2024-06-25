@@ -6,9 +6,7 @@ const logicalOperatorTransfrom = require('./logicalOperatorTransform')
 function policyBuilder(data, action) {
 
     var policies = []
-
     var transformedJson = data
-    // console.log(transformedJson)
 
     for (var iter in transformedJson) {
         var conditionsGroup = []
